@@ -51,7 +51,7 @@ cat >>boot.sh <<EOF
 
 #Preserve Cloud Foundry information
 
-pwd
+#pwd
 export LD_LIBRARY_PATH=/app/zend-server-6-php-5.4/lib
 export PHP_INI_SCAN_DIR=/app/zend-server-6-php-5.4/etc/conf.d
 export PHPRC=/app/zend-server-6-php-5.4/etc
@@ -65,8 +65,9 @@ sed "s/vcap/\${USER_UID}/" \${PHP_INI_SCAN_DIR}/ZendGlobalDirectives.ini.erb > \
 sed "s/VCAP_PORT/\${PORT}/" /app/nginx/conf/sites-available/default.erb > /app/nginx/conf/sites-available/default
 ln -f -s /app/nginx/conf/sites-available/default /app/nginx/conf/sites-enabled
 
-ls /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php
-ldd /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php
+#ls /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php
+#ldd /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php
+#ldd /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php
 echo "Creating/Upgrading Zend databases. This may take several minutes..."
 /app/zend-server-6-php-5.4/gui/lighttpd/sbin/php -c /app/zend-server-6-php-5.4/gui/lighttpd/etc/php-fcgi.ini /app/zend-server-6-php-5.4/share/scripts/zs_create_databases.php zsDir=/app/zend-server-6-php-5.4 toVersion=6.1.0
 
@@ -92,6 +93,7 @@ fi
 
 #Start a binary that does nothing so that boot.sh never ends and warden does not kill the container
 #This allows the web server to be safely restarted by Zend Server (during deploy etc...).
+netstat -lntp
 echo "Keep Container alive..."
 exec /app/zend-server-6-php-5.4/bin/donothing
 
