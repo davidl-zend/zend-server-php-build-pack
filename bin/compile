@@ -92,7 +92,7 @@ fi
 
 #Bootstrap Zend Server
 /app/zend-server-6-php-5.4/bin/zs-manage bootstrap-single-server -p \$ZS_ADMIN_PASSWORD -a 'TRUE'> /app/zend-server-6-php-5.4/tmp/api_key
-echo /app/zend-server-6-php-5.4/bin/zs-manage bootstrap-single-server -p \$ZS_ADMIN_PASSWORD -a 'TRUE'> /app/zend-server-6-php-5.4/tmp/api_key
+echo /app/zend-server-6-php-5.4/bin/zs-manage bootstrap-single-server -p \$ZS_ADMIN_PASSWORD -a 'TRUE'
 #Start a binary that does nothing so that boot.sh never ends and warden does not kill the container
 #This allows the web server to be safely restarted by Zend Server (during deploy etc...).
 netstat -lntp
